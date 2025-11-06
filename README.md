@@ -26,29 +26,59 @@ This tool streamlines the process of identifying and reporting maintenance, safe
 3.  **Generate Report**: With an image uploaded and location acquired, click the "Generate Report" button.
 4.  **AI Analysis**: The app sends the image and your location data to the Gemini API. The AI analyzes the content and generates a detailed issue report.
 5.  **Review & Send**: The complete report is displayed on the screen. After reviewing it, click "Send Report via Email" to open your email client with the pre-populated report.
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-## Tech Stack
+# AI Issue Reporter
 
--   **Frontend**: React, TypeScript
--   **Styling**: Tailwind CSS
--   **AI Model**: Google Gemini API (`@google/genai`)
--   **Module System**: ES Modules with Import Maps
+An AI-powered application to detect problems in photos, generate an analysis report with location, and prepare an email to the appropriate management personnel. This tool streamlines reporting maintenance, safety, and structural issues — simply take a photo and the AI will generate the analysis and a pre-filled email.
 
-## Setup and Running Locally
+## Features
 
-This project is configured to run in an environment where the Gemini API key is securely managed.
+- **📸 Multi-source image input**: Upload images via drag-and-drop, file selection, or capture photos using your device camera.
+- **📍 Geolocation tagging**: Captures GPS coordinates to pinpoint the issue's location.
+- **🧠 AI-powered analysis**: Uses Google's Gemini API to analyze images and identify potential problems.
+- **📄 Comprehensive reporting**: Produces a structured report including a concise title, detailed description, priority suggestion (Low/Medium/High), remediation steps, and suggested corporate recipient.
+- **📧 One-click email generation**: Pre-fills a `mailto:` link with recipient, subject, and a professionally formatted body containing the full report.
+- **✨ Modern UI**: Built with React + TypeScript and Tailwind CSS for a responsive, accessible interface.
 
-1.  **API Key**: The application requires a Google Gemini API key. It is accessed via `process.env.API_KEY`. Ensure this environment variable is set in your deployment environment.
-2.  **Permissions**: For full functionality, the application requires browser permissions for **Geolocation** and **Camera** access.
-3.  **Run**: Serve the `index.html` file using any static file server. The application is a pure client-side app and requires no backend server.
+## How it works
 
-## Project Structure
+1. Grant permissions: the app requests location (and camera if used) to tag the report.
+2. Upload or capture an image using the uploader.
+3. Click "Generate Report" to send the image + location to the Gemini API.
+4. Review the generated report on-screen and click "Send Report via Email" to open your default email client with the pre-populated message.
+
+## Tech stack
+
+- Frontend: React + TypeScript
+- Styling: Tailwind CSS
+- AI: Google Gemini API (`@google/genai`)
+
+## Run locally
+
+**Prerequisites:** Node.js
+
+1. Install dependencies:
+
+    npm install
+
+2. Set your Gemini API key (environment variable) — for local development set `GEMINI_API_KEY` in `.env.local` or your shell environment.
+
+3. Run the dev server:
+
+    npm run dev
+
+Note: the app is a client-side application and requires browser permissions for Geolocation and Camera to use those features.
+
+## Project structure
 
 ```
 /
 ├── components/          # Reusable React components
 │   ├── icons.tsx        # SVG icon components
-│   ├── ImageUploader.tsx # Component for image upload and camera
+│   ├── ImageUploader.tsx# Component for image upload and camera
 │   ├── Loader.tsx       # Loading spinner component
 │   └── ReportDisplay.tsx# Component to show the analysis report
 ├── services/            # API interaction logic
